@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> abc9aba (Initial commit after fixing project)
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -114,4 +118,43 @@ body {
 
 .back-btn:hover {
   background: #222;
+<<<<<<< HEAD
 }
+=======
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 14px;
+  background: rgba(31, 41, 55, 0.8);
+  color: #e5e7eb;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.back-btn:hover {
+  background: #374151;
+  transform: translateX(-3px);
+  color: white;
+}
+
+/* Click effect */
+.back-btn:active {
+  transform: scale(0.95);
+}
+>>>>>>> abc9aba (Initial commit after fixing project)

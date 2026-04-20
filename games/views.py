@@ -6,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+<<<<<<< HEAD
+=======
+from urllib3 import request
+>>>>>>> abc9aba (Initial commit after fixing project)
 
 from .models import Game, Profile, Purchase
 from .forms import SignUpForm
@@ -166,4 +170,16 @@ def signup(request):
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
+<<<<<<< HEAD
         Profile.objects.create(user=instance)
+=======
+        Profile.objects.create(user=instance)
+def fake_payment(request, game_id):
+    game = Game.objects.get(id=game_id)
+
+    if request.method == "POST":
+        # 👉 Simulate payment success
+        return redirect('home')  # or success page
+
+    return render(request, 'games/payment.html', {'game': game})
+>>>>>>> abc9aba (Initial commit after fixing project)
