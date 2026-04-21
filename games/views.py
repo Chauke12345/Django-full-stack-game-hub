@@ -6,10 +6,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-<<<<<<< HEAD
-=======
-from urllib3 import request
->>>>>>> abc9aba (Initial commit after fixing project)
 
 from .models import Game, Profile, Purchase
 from .forms import SignUpForm
@@ -149,20 +145,28 @@ def play_game(request, game_id):
 # =========================
 # 👤 SIGNUP
 # =========================
+
 def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
 
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, "Account created successfully!")
-            return redirect('home')
-    else:
-        form = SignUpForm()
+        if password != confirm_password:
+            return redirect("signup")
 
-    return render(request, 'games/signup.html', {'form': form})
+        if User.objects.filter(username=username).exists():
+            return redirect("signup")
 
+        user = User.objects.create_user(
+            username=username,
+            password=password
+        )
+        user.save()
+
+        return redirect("login")
+
+    return render(request, "games/signup.html")
 
 # =========================
 # 👤 AUTO CREATE PROFILE
@@ -170,16 +174,4 @@ def signup(request):
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-<<<<<<< HEAD
         Profile.objects.create(user=instance)
-=======
-        Profile.objects.create(user=instance)
-def fake_payment(request, game_id):
-    game = Game.objects.get(id=game_id)
-
-    if request.method == "POST":
-        # 👉 Simulate payment success
-        return redirect('home')  # or success page
-
-    return render(request, 'games/payment.html', {'game': game})
->>>>>>> abc9aba (Initial commit after fixing project)

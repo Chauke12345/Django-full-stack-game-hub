@@ -1,6 +1,7 @@
 {% extends "games/base.html" %}
 
 {% block content %}
+
 <style>
   body {
     background: linear-gradient(135deg, #1e1e2f, #2a2a40);
@@ -93,9 +94,15 @@
 
     <h2>🚀 Create Account</h2>
 
+    <!-- ✅ FIXED FORM (NO form.as_p) -->
     <form method="POST">
       {% csrf_token %}
-      {{ form.as_p }}
+
+      <input type="text" name="username" placeholder="Username" required>
+
+      <input type="password" name="password" placeholder="Password" required>
+
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
       <button type="submit">Sign Up</button>
     </form>
@@ -104,6 +111,7 @@
       Already have an account?
       <a href="{% url 'login' %}">Login</a>
     </p>
+
   </div>
 </div>
 

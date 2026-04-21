@@ -99,10 +99,7 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-<<<<<<< HEAD
-=======
 
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
->>>>>>> abc9aba (Initial commit after fixing project)
